@@ -1,0 +1,34 @@
+A phpBB3 extension to allow websites written in other language than phpBB3 to interact with forum engine by
+using a simple RESTful API.
+
+Currently the whole project is in Alpha stage, all contributions are welcome tho.
+
+Active "stuff":
+  * session fetching (GET app.php/connector/session/<sid>)
+  * user fetching (GET app.php/connector/user/<user_id>)
+  * user editing (POST app.php/connector/user/<user_id>; Need to specify safe attributes in ACP)
+  * ACL test (POST app.php/connector/user/<user_id>/acl; options variable containing comma separated privileges (a_*, u_*, f_*))
+    * Note, currently works only for global test (acl_gets method)
+  * Authentication (POST app.php/connector/user/auth; Pass username and password, useful for building APIs)
+
+Things that would probaly be useful:
+  * fetching topics and posts
+  * fetching list of private messages
+  * etc.
+
+Motivation:
+
+One would argue, these features could be done by directly communicating with the backend database. Mainly
+it is true, but in the ACL case, you'll have to replicate the whole ACL logic. Also, by using this extension
+you do not need to worry about compatibility with various SQL RDBMS. Not to mention, future phpBB3 versions
+might implement a wrapping layer around the backend storage and add some caching that could be synchronised
+(which would be "impossible" to do by directly fetching data from database).
+
+Used by:
+  * https://github.com/MasterMind2k/flask-phpbb3 (planned as of 29. 5. 2015)
+
+=======================
+WARNING WARNING WARNING
+
+This API is intended to be used by internal backend services, it should be protected by authentication key
+(built-in) and by list of allowed IPs (apropriate config options in HTTP server).

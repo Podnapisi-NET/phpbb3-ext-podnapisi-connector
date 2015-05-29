@@ -1,0 +1,35 @@
+<!-- INCLUDE overall_header.html -->
+
+<h1>{L_SETTINGS}</h1>
+
+<form method="post" action="{U_ACTION}">
+  <fieldset>
+    <legend>{L_SETTINGS}</legend>
+    <dl>
+      <dt>
+        <label for="auth_key">{L_AUTH_KEY}</label>
+        <br/>
+        <span>{L_AUTH_KEY_DESCRIPTION}</span>
+      </dt>
+      <dd><input type="text" value="{AUTH_KEY}" id="auth_key" name="auth_key" autocomplete="off" /></dd>
+    </dl>
+
+    <dl>
+      <dt>
+        <label for="user_safe_attributes">{L_USER_SAFE_ATTRIBUTES}</label>
+        <br/>
+        <span>{L_USER_SAFE_ATTRIBUTES_DESCRIPTION}</span>
+      </dt>
+      <dd><input type="text" value="{USER_SAFE_ATTRIBUTES}" id="user_safe_attributes" name="user_safe_attributes" /></dd>
+    </dl>
+
+  </fieldset>
+
+  <fieldset class="submit-buttons">
+    <input class="button1" name="submit" type="submit" value="{L_SUBMIT}" />
+  </fieldset>
+
+  {S_FORM_TOKEN}
+</form>
+
+<!-- INCLUDE overall_footer.html -->

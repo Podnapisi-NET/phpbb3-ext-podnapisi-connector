@@ -1,0 +1,24 @@
+{
+  "name": "podnapisi/connector",
+  "type": "phpbb-extension",
+  "description": "Connector API phpBB 3.1 to export functions of it to external non-PHP projects",
+  "homepage": "https://github.com/Podnapisi/phpbb-ext-podnapisi-tracking",
+  "version": "0.0.1",
+  "time": "2015-05-26",
+  "license": "GPL-2.0",
+  "authors": [{
+    "name": "Gregor Kališnik",
+    "email": "gregor@podnapisi.net",
+    "homepage": "https://github.com/MasterMind2k/",
+    "role": "Lead Developer"
+  }],
+  "require": {
+    "php": ">=5.3.3"
+  },
+  "extra": {
+    "display-name": "Connector for external projects",
+    "soft-require": {
+      "phpbb/phpbb": ">=3.1.0-RC2,<3.2.*@dev"
+    }
+  }
+}

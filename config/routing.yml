@@ -1,0 +1,13 @@
+podnapisi_connector_controller_session:
+  path: /connector/session/{session_id}
+  defaults: { _controller: podnapisi.connector.controller.session:handle }
+
+podnapisi_connector_controller_user_auth:
+  path: /connector/user/auth
+  defaults: { _controller: podnapisi.connector.controller.user:handle_auth }
+podnapisi_connector_controller_user:
+  path: /connector/user/{user_id}
+  defaults: { _controller: podnapisi.connector.controller.user:handle }
+podnapisi_connector_controller_user_acl:
+  path: /connector/user/{user_id}/acl
+  defaults: { _controller: podnapisi.connector.controller.user:handle_acl }

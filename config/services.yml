@@ -1,0 +1,22 @@
+services:
+  podnapisi.connector.controller.session:
+    class: podnapisi\connector\controller\session
+    arguments:
+      - @config
+      - @request
+      - @dbal.conn
+  podnapisi.connector.controller.user:
+    class: podnapisi\connector\controller\user
+    arguments:
+      - @config
+      - @request
+      - @dbal.conn
+      - @auth
+      - @auth.provider_collection
+
+  podnapisi.connector.listener:
+    class: podnapisi\connector\event\main_listener
+    arguments:
+      - @user
+    tags:
+      - { name: event.listener }
