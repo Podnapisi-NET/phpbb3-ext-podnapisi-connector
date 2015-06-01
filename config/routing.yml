@@ -11,3 +11,6 @@ podnapisi_connector_controller_user:
 podnapisi_connector_controller_user_acl:
   path: /connector/user/{user_id}/acl
   defaults: { _controller: podnapisi.connector.controller.user:handle_acl }
+podnapisi_connector_controller_user_member:
+  path: /connector/user/{user_id}/member/{group}
+  defaults: { _controller: podnapisi.connector.controller.user:handle_member }

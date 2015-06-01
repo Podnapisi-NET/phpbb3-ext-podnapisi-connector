@@ -102,6 +102,47 @@ class user extends base {
   }
 
   /**
+   * REST API for testing user membership
+   *
+   * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
+   */
+  public function handle_member($user_id, $group)
+  {
+    $user_id = (int) $user_id;
+    if (is_numeric($group))
+      $group = (int) $group;
+    else
+      $group = $this->db->sql_escape($group);
+
+    $this->_validate_request(array('GET'));
+
+    if (is_int($group)) {
+      $q = "SELECT ug.group_id ".
+           "FROM ". USER_GROUP_TABLE ." ug ".
+           "WHERE ug.user_id = $user_id ".
+             "AND ug.group_id = $group ".
+             "AND ug.user_pending = 0 ".
+           "LIMIT 1";
+    } else {
+      $q = "SELECT ug.group_id ".
+           "FROM " . USER_GROUP_TABLE . " ug, " . GROUPS_TABLE . " g ".
+           "WHERE ug.user_id = $user_id ".
+             "AND g.group_name = '$group' ".
+             "AND ug.group_id = g.group_id ".
+             "AND ug.user_pending = 0 ".
+           "LIMIT 1";
+    }
+
+    $r = $this->db->sql_query($q, 500);
+    $data = $this->db->sql_fetchrow($r);
+    $this->db->sql_freeresult($r);
+
+    return $this->_make_response(array(
+      'status' => $data ? 'ok' : 'not-member'
+    ));
+  }
+
+  /**
    * REST API for user ACL
    *
    * @return \Symfony\Component\HttpFoundation\Response A Symfony Response object
