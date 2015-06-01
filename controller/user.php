@@ -28,7 +28,7 @@ class user extends base {
     $sql = 'SELECT *
             FROM ' . USERS_TABLE . "
             WHERE user_id = " . $this->db->sql_escape($user_id);
-    $result = $this->db->sql_query($sql);
+    $result = $this->db->sql_query($sql, 500);
     $data = $this->db->sql_fetchrow($result);
     $this->db->sql_freeresult($result);
 
