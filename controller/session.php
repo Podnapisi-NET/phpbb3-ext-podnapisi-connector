@@ -58,6 +58,9 @@ class session extends base {
       $data = array();
     }
 
-    return new \Symfony\Component\HttpFoundation\Response(json_encode($data));
+    return new \Symfony\Component\HttpFoundation\Response(json_encode(array(
+      'status' => 'ok',
+      'data'   => $data
+    )));
   }
 }

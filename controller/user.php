@@ -71,7 +71,10 @@ class user extends base {
 
     switch ($this->request->server('REQUEST_METHOD')) {
       case 'GET':
-        $data = $this->_fetch_user($user_id);
+        $data = array(
+          'status' => 'ok',
+          'data'   => $this->_fetch_user($user_id)
+        );
         break;
 
       case 'POST':
@@ -124,8 +127,7 @@ class user extends base {
     $this->auth->acl($user);
 
     $data = array(
-      'status' => 'ok',
-      'permission' => $this->auth->acl_gets($options)
+      'status' => $this->auth->acl_gets($options) ? 'ok' : 'failed',
     );
 
     return $this->_make_response($data);
